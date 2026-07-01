@@ -1,0 +1,305 @@
+/* ============================================================
+   panels.css — registers, stack, disassembly, memory, heatmap
+   ============================================================ */
+
+/* ── Format toggle ── */
+.format-toggle {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.format-btn {
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-faint);
+  transition: all 0.12s ease;
+}
+.format-btn:hover {
+  color: var(--text-dim);
+}
+.format-btn.active {
+  color: #12100a;
+  background: var(--gold);
+}
+
+/* ── Registers ── */
+.registers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 14px;
+}
+.register-section-title {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+.register-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.register-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.register-name {
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.register-value {
+  color: var(--text);
+}
+.register-flag {
+  background: rgba(232, 176, 75, 0.08);
+}
+.register-flag .register-name {
+  color: var(--gold);
+}
+.register-pc .register-value {
+  color: var(--green);
+}
+.register-special .register-name {
+  color: var(--cyan);
+}
+.timer-value {
+  color: var(--warn);
+}
+.sound-active {
+  color: var(--danger);
+  animation: pulse 0.6s ease-in-out infinite;
+}
+.opcode-value {
+  color: var(--violet);
+}
+.status-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+}
+.status-badge.halted { color: var(--danger); }
+.status-badge.waiting { color: var(--warn); }
+.status-badge.running { color: var(--green); }
+
+/* ── Stack ── */
+.stack-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px;
+  max-height: 460px;
+  overflow-y: auto;
+}
+.stack-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  border: 1px solid transparent;
+}
+.stack-entry.active {
+  background: rgba(95, 211, 255, 0.07);
+  border-color: rgba(95, 211, 255, 0.18);
+}
+.stack-entry.empty {
+  color: var(--text-faint);
+  background: rgba(255, 255, 255, 0.015);
+}
+.stack-entry.top {
+  background: rgba(232, 176, 75, 0.12);
+  border-color: rgba(232, 176, 75, 0.35);
+}
+.stack-index {
+  color: var(--text-faint);
+  width: 16px;
+}
+.stack-value {
+  color: var(--text);
+}
+.stack-pointer-indicator {
+  margin-left: auto;
+  color: var(--gold);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+/* ── Disassembly ── */
+.disasm-list {
+  padding: 8px;
+  max-height: 560px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.disasm-line {
+  display: grid;
+  grid-template-columns: 10px 14px 58px 52px 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+.disasm-line:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.disasm-line.empty {
+  opacity: 0.32;
+}
+.disasm-line.current {
+  background: rgba(74, 222, 128, 0.12);
+  box-shadow: inset 2px 0 0 var(--green);
+}
+.disasm-break {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+}
+.disasm-break.on {
+  background: var(--danger);
+  border-color: var(--danger);
+  box-shadow: 0 0 8px var(--danger);
+}
+.disasm-arrow {
+  color: var(--green);
+}
+.disasm-addr {
+  color: var(--text-faint);
+}
+.disasm-hex {
+  color: var(--violet);
+}
+.disasm-mnemonic {
+  color: var(--text);
+}
+.disasm-line.current .disasm-mnemonic {
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* ── Memory inspector ── */
+.memory-nav {
+  display: flex;
+  gap: 4px;
+}
+.nav-btn {
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  transition: all 0.12s ease;
+}
+.nav-btn:hover {
+  color: var(--gold);
+  border-color: rgba(232, 176, 75, 0.3);
+}
+.memory-hex-view {
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  overflow-x: auto;
+}
+.memory-row {
+  display: flex;
+  gap: 14px;
+  padding: 1px 0;
+  white-space: nowrap;
+}
+.memory-row.header-row {
+  color: var(--text-faint);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
+.memory-addr {
+  color: var(--gold);
+  min-width: 46px;
+}
+.memory-bytes {
+  letter-spacing: 0.02em;
+}
+.memory-byte {
+  padding: 0 2px;
+  color: var(--text-faint);
+}
+.memory-byte.non-zero {
+  color: var(--text);
+}
+.memory-byte.highlight-pc {
+  background: rgba(74, 222, 128, 0.3);
+  color: #fff;
+  border-radius: 3px;
+}
+.memory-byte.highlight-i {
+  background: rgba(255, 183, 87, 0.3);
+  color: #fff;
+  border-radius: 3px;
+}
+.memory-ascii {
+  color: var(--text-dim);
+  margin-left: auto;
+  padding-left: 12px;
+}
+.memory-scrollbar {
+  padding: 10px 14px 14px;
+}
+
+/* ── Heatmap ── */
+.heatmap-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 12px 14px 0;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.legend-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+}
+.heatmap-container {
+  padding: 14px;
+  display: grid;
+  place-items: center;
+}
+.heatmap-canvas {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  border-radius: 6px;
+}
+.heatmap-addresses {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 14px 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-faint);
+}

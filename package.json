@@ -1,0 +1,45 @@
+{
+  "name": "octo-8",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "OCTO-8 — a cinematic, production-grade CHIP-8 emulator and visual debugger for the browser, with a Web Worker CPU, live disassembly, memory heatmap, CRT themes, real audio, and an on-device AI assistant.",
+  "author": "Shahriar Ahmed",
+  "license": "MIT",
+  "homepage": "https://github.com/shahriar-ahmed-seam/octo-8",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shahriar-ahmed-seam/octo-8.git"
+  },
+  "keywords": [
+    "chip-8",
+    "chip8",
+    "emulator",
+    "visual-debugger",
+    "disassembler",
+    "web-worker",
+    "retro-computing",
+    "react",
+    "typescript",
+    "vite",
+    "ollama"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "fetch:images": "node scripts/fetch-images.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.4",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}

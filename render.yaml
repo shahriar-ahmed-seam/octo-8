@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────────────────────
+# render.yaml — optional Ollama backend for the OCTO-8 AI assistant.
+#
+# Deploy this on Render, then set OLLAMA_URL on your Vercel project to the
+# resulting service URL (e.g. https://octo-8-ollama.onrender.com). The Vercel
+# `/api/assistant` function forwards chat requests here.
+#
+# The assistant is entirely optional — OCTO-8 runs without it, and users can
+# also point the app at a local Ollama from the in-app settings.
+# ─────────────────────────────────────────────────────────────
+services:
+  - type: web
+    name: octo-8-ollama
+    runtime: docker
+    dockerfilePath: ./deploy/ollama/Dockerfile
+    dockerContext: .
+    region: oregon
+    plan: standard # a 4B model needs meaningful RAM; free tier is not enough
+    healthCheckPath: /
+    envVars:
+      - key: OLLAMA_HOST
+        value: 0.0.0.0:11434
+      - key: OLLAMA_ORIGINS
+        value: "*"
+      - key: OLLAMA_MODEL
+        value: gemma3:4b
+    disk:
+      name: ollama-models
+      mountPath: /root/.ollama
+      sizeGB: 10
