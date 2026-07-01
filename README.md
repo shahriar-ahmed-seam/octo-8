@@ -93,7 +93,7 @@ URL is `http://localhost:11434` and can be changed in the assistant settings.
 
 ### Hosted (for the deployed site)
 
-Deploy the Ollama service (see [`render.yaml`](./render.yaml) and
+Deploy the Ollama service (see [`deploy/render.yaml`](./deploy/render.yaml) and
 [`deploy/ollama`](./deploy/ollama)), then set `OLLAMA_URL` on your Vercel project.
 The browser calls the same-origin `/api/assistant` Edge function, which forwards
 to your Ollama instance. No model or key is ever exposed to the browser.
@@ -119,7 +119,7 @@ lives in [`vercel.json`](./vercel.json). Optional environment variables:
 
 ### Optional AI backend → Render
 
-The [`render.yaml`](./render.yaml) blueprint deploys Ollama as a Docker web
+The [`deploy/render.yaml`](./deploy/render.yaml) blueprint deploys Ollama as a Docker web
 service with a persistent disk for the model cache.
 
 ## Keyboard & controls
@@ -161,7 +161,7 @@ octo-8/
 │   ├── hooks/                # useEmulator, useToast
 │   ├── roms/                 # verified bundled ROMs
 │   └── styles/               # design system (tokens + partials)
-└── vercel.json · render.yaml
+└── vercel.json · deploy/render.yaml
 ```
 
 ## How it works

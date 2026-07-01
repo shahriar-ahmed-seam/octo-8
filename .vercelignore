@@ -1,0 +1,5 @@
+# Not needed by the Vercel build (frontend + /api only)
+deploy
+scripts
+README.md
+LICENSE
